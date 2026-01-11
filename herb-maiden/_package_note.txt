@@ -1,0 +1,17 @@
+npm create vite@latest {proj_name}
+npm install tailwindcss @tailwindcss/vite
+npm install gh-pages --save-dev
+
+// vite config
+  base: "/herb-maiden/",
+  plugins: [
+    react(), 
+    tailwindcss(),
+  ],
+
+// package.json
+  "homepage": "https://useless-pipi.github.io/herb-maiden/",
+
+
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
