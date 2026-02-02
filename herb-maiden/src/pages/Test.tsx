@@ -11,25 +11,30 @@ function Test(){
     const [image000, status000] = useImage(png000, 'anonymous', 'origin');
     const [image1001, status1001] = useImage(png1001, 'anonymous', 'origin');
     
-    const handleResize = useCallback((size: { width: number; height: number }, entry: ResizeObserverEntry) => {
-      console.log('div change:', size);
-
-    }, []);
-
-    const { ref: containerRef, width: containerWidth, height } = useResizeObserver<HTMLDivElement>(
-      { onResize: handleResize }
-    );
-
-    // Define virtual size for our scene
-    const sceneWidth = 2000;
-    const sceneHeight = 2000;
-    
-    // State to track current scale and dimensions
-    const [stageSize, setStageSize] = useState({
-      width: sceneWidth,
-      height: sceneHeight,
-      scale: 1
-    });
+   const handleResize = useCallback((size: { width: number; height: number }, entry: ResizeObserverEntry) => {
+         console.log('div change:', size);
+         const newScale = size.width / sceneWidth
+         setStageSize({
+           width: size.width,
+           height: size.height,
+           scale: newScale,
+         })
+       }, []);
+   
+       const { ref: containerRef, width: containerWidth, height: containerHeight } = useResizeObserver<HTMLDivElement>(
+         { onResize: handleResize }
+       );
+   
+       // Define virtual size for our scene
+       const sceneWidth = 2000;
+       const sceneHeight = 2000;
+       
+       // State to track current scale and dimensions
+       const [stageSize, setStageSize] = useState({
+         width: sceneWidth,
+         height: sceneHeight,
+         scale: 1
+       });
 
     return <>
         <div 
@@ -37,9 +42,9 @@ function Test(){
           className='w-screen h-screen'        
         >
         <Stage 
-          width={sceneWidth} height={containerWidth / sceneWidth * sceneHeight}         
-          scaleX={containerWidth / sceneWidth}
-          scaleY={containerWidth / sceneWidth}> 
+          width={stageSize.width} height={stageSize.height}         
+          scaleX={stageSize.scale}
+          scaleY={stageSize.scale}> 
           <Layer>
             <Image
                 key={0}
