@@ -5,6 +5,7 @@ import Test from './pages/Test'
 import useImage from 'use-image'
 import png000 from './assets/imgs/chars/000.png'
 import World from './pages/World';
+import Test2 from './pages/Test2';
 
 function App() {
   const [image] = useImage(png000);
@@ -12,7 +13,7 @@ function App() {
   return (
     <>
       <div className='w-full h-full'>
-        <World />
+        <Test2 />
       </div>
     </>
   )
