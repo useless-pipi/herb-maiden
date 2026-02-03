@@ -15,7 +15,8 @@ interface UseResizeObserverOptions {
 export function useResizeObserver<T extends HTMLElement = HTMLDivElement>(
   options: UseResizeObserverOptions = {}
 ) {
-  const { onResize, debounceDelay = 100 } = options;
+  const { onResize } = options;
+  // const { onResize, debounceDelay = 100 } = options;
   const ref = useRef<T>(null);
   const [size, setSize] = useState<Size>({ width: 0, height: 0 });
   const observerRef = useRef<ResizeObserver | null>(null);

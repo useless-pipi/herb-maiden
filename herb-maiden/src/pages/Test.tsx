@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import './../App.css'
 import { Image, Stage, Layer } from 'react-konva';
 import useImage from 'use-image';
@@ -8,11 +8,11 @@ import { CHAR_DIMENSION } from '../common/constants'
 import { useResizeObserver } from '../hooks/useResizeObserver';
 
 function Test(){
-    const [image000, status000] = useImage(png000, 'anonymous', 'origin');
-    const [image1001, status1001] = useImage(png1001, 'anonymous', 'origin');
+    const [image000] = useImage(png000, 'anonymous', 'origin');
+    const [image1001] = useImage(png1001, 'anonymous', 'origin');
     
-   const handleResize = useCallback((size: { width: number; height: number }, entry: ResizeObserverEntry) => {
-         console.log('div change:', size);
+    //  const handleResize = useCallback((size: { width: number; height: number }, entry: ResizeObserverEntry) => {
+   const handleResize = useCallback((size: { width: number; height: number }) => {
          const newScale = size.width / sceneWidth
          setStageSize({
            width: size.width,
@@ -21,7 +21,7 @@ function Test(){
          })
        }, []);
    
-       const { ref: containerRef, width: containerWidth, height: containerHeight } = useResizeObserver<HTMLDivElement>(
+       const { ref: containerRef } = useResizeObserver<HTMLDivElement>(
          { onResize: handleResize }
        );
    

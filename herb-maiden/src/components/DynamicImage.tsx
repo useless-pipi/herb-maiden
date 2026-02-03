@@ -307,25 +307,25 @@ export const DynamicImage: React.FC<DynamicImageProps> = ({
     );
   };
 
-  const renderImageLabel = () => {
-    if (!imagePath) return null;
+//   const renderImageLabel = () => {
+//     if (!imagePath) return null;
     
-    const fileName = imagePath.split('/').pop();
+//     const fileName = imagePath.split('/').pop();
     
-    return (
-      <Text
-        x={x + width / 2}
-        y={y + height + 15}
-        offsetX={width / 2}
-        text={fileName}
-        fill="#495057"
-        fontSize={11}
-        align="center"
-        width={width}
-        wrap="word"
-      />
-    );
-  };
+//     return (
+//       <Text
+//         x={x + width / 2}
+//         y={y + height + 15}
+//         offsetX={width / 2}
+//         text={fileName}
+//         fill="#495057"
+//         fontSize={11}
+//         align="center"
+//         width={width}
+//         wrap="word"
+//       />
+//     );
+//   };
 
   /**
    * Status determine

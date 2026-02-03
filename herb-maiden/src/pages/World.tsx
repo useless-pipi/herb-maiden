@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import './../App.css'
 import { Image, Stage, Layer } from 'react-konva';
 import useImage from 'use-image';
@@ -9,10 +9,10 @@ import { CITIES } from '../data/cities'
 import png000i from '@assets/imgs/chars/000i.png';
 
 function World(){
-    const [image000, status000] = useImage(png000i, 'anonymous', 'origin');
-    const [worldImage, statusWorld] = useImage(worldImg, 'anonymous', 'origin');
+    const [image000] = useImage(png000i, 'anonymous', 'origin');
+    const [worldImage] = useImage(worldImg, 'anonymous', 'origin');
 
-    const handleResize = useCallback((size: { width: number; height: number }, entry: ResizeObserverEntry) => {
+    const handleResize = useCallback((size: { width: number; height: number }) => {
       console.log('div change:', size);
       const newScale = size.width / sceneWidth
       setStageSize({
@@ -22,7 +22,7 @@ function World(){
       })
     }, []);
 
-    const { ref: containerRef, width: containerWidth, height: containerHeight } = useResizeObserver<HTMLDivElement>(
+    const { ref: containerRef } = useResizeObserver<HTMLDivElement>(
       { onResize: handleResize }
     );
 
@@ -62,7 +62,7 @@ function World(){
           </Layer>
           <Layer>
           {
-            CITIES.map((city, index) => (
+            CITIES.map((city) => (
               <Image
                 key={city.name}
                 image={image000}
