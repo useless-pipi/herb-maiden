@@ -44,6 +44,8 @@ export const DynamicImage: React.FC<DynamicImageProps> = ({
   const [loadAttempts, setLoadAttempts] = useState(0);
 
   const MAX_RETRIES = 2;
+  const isProduction = import.meta.env.PROD;
+  const base = isProduction ? import.meta.env.BASE_URL : '../';
 
   const loadDynamicImage = useCallback(async (
     targetPath: string, 
@@ -51,13 +53,13 @@ export const DynamicImage: React.FC<DynamicImageProps> = ({
   ) => {
     try {
       console.log(`${isRetry ? 'retry' : 'start retry'}: ${targetPath}`);
-      
+
       // dynamic import
-      const module = await import(`../assets/${targetPath}`);
+      const module = await import(`${base}assets/${targetPath}`);
     //   console.log(`?${module}`)
       
       if (module.default) {
-        console.log(`load success: ${targetPath}`);
+        console.log(`load success: ${base}assets/${targetPath}`);
         setCurrentImagePath(module.default);
         setHasError(false);
         setLoadAttempts(0);
@@ -66,7 +68,7 @@ export const DynamicImage: React.FC<DynamicImageProps> = ({
       }
       
     } catch (error) {
-      console.error(`load fail: ../assets/${targetPath}`, error);
+      console.error(`load fail: assets/${targetPath}`, error);
       
       if (!isRetry && loadAttempts < MAX_RETRIES) {
         // reload logic
@@ -89,7 +91,7 @@ export const DynamicImage: React.FC<DynamicImageProps> = ({
    */
   const loadDefaultImage = useCallback(async () => {
     try {
-      const module = await import(`../assets/${defaultImagePath}`);
+      const module = await import(`${base}assets/${defaultImagePath}`);
       if (module.default) {
         setCurrentImagePath(module.default);
       }

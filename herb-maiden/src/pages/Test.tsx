@@ -2,14 +2,13 @@ import { useState, useCallback } from 'react'
 import './../App.css'
 import { Image, Stage, Layer } from 'react-konva';
 import useImage from 'use-image';
-import png000 from '@assets/imgs/chars/000.png';
-import png1001 from '@assets/imgs/enemy/1001.png';
 import { CHAR_DIMENSION } from '../common/constants'
 import { useResizeObserver } from '../hooks/useResizeObserver';
+import { getPublicImagePath } from '../common/Util';
 
 function Test(){
-    const [image000] = useImage(png000, 'anonymous', 'origin');
-    const [image1001] = useImage(png1001, 'anonymous', 'origin');
+    const [image000] = useImage(getPublicImagePath('chars/000.png'), 'anonymous', 'origin');
+    const [image1001] = useImage(getPublicImagePath('enemy/1001.png'), 'anonymous', 'origin');
     
     //  const handleResize = useCallback((size: { width: number; height: number }, entry: ResizeObserverEntry) => {
    const handleResize = useCallback((size: { width: number; height: number }) => {

@@ -1,15 +1,14 @@
 import './App.css'
-import useImage from 'use-image'
-import png000 from './assets/imgs/chars/000.png'
-import Test2 from './pages/Test2';
+// import Test from './pages/Test';
+import Test3 from './pages/Test3';
+// import World from './pages/World';
 
 function App() {
-  const [image] = useImage(png000);
-  console.log(image)
   return (
     <>
+      <span>v0.0.1</span>
       <div className='w-full h-full'>
-        <Test2 />
+        <Test3 />
       </div>
     </>
   )

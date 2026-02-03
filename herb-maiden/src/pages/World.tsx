@@ -4,13 +4,12 @@ import { Image, Stage, Layer } from 'react-konva';
 import useImage from 'use-image';
 import { MAP_WORLD_DIMENSION } from '../common/constants'
 import { useResizeObserver } from '../hooks/useResizeObserver';
-import worldImg from '@assets/imgs/maps/World.png';
 import { CITIES } from '../data/cities'
-import png000i from '@assets/imgs/chars/000i.png';
+import { getPublicImagePath } from '../common/Util';
 
 function World(){
-    const [image000] = useImage(png000i, 'anonymous', 'origin');
-    const [worldImage] = useImage(worldImg, 'anonymous', 'origin');
+    const [image000] = useImage(getPublicImagePath('chars/000i.png'), 'anonymous', 'origin');
+    const [worldImage] = useImage(getPublicImagePath('maps/World.jpg'), 'anonymous', 'origin');
 
     const handleResize = useCallback((size: { width: number; height: number }) => {
       console.log('div change:', size);
