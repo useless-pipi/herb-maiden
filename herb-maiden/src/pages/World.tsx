@@ -6,6 +6,7 @@ import { MAP_WORLD_DIMENSION } from '../common/constants'
 import { useResizeObserver } from '../hooks/useResizeObserver';
 import { CITIES } from '../data/cities'
 import { getPublicImagePath } from '../common/Util';
+import RStage from '../components/RStage';
 
 function World(){
     const [image000] = useImage(getPublicImagePath('chars/000i.png'), 'anonymous', 'origin');
@@ -37,15 +38,18 @@ function World(){
     });
 
     return <>
-        <div 
-          ref={containerRef} 
-          className='w-full h-full'        
+        <RStage
+          sceneWidth={sceneWidth}
+          sceneHeight={sceneHeight}
+          scaleMargin={0.02}
+          containerProps={{
+            // style: { backgroundColor: '#1a1a2e' },
+            // className: 'world-container',
+          }}
+          stageProps={{
+            // draggable: true,
+          }}
         >
-        <Stage 
-          width={stageSize.width} height={stageSize.height}         
-          scaleX={stageSize.scale}
-          scaleY={stageSize.scale}> 
-          
           <Layer>
             <Image
                 key={0}
@@ -77,8 +81,7 @@ function World(){
             ))
           }
           </Layer>
-        </Stage>    
-      </div>
+        </RStage>
     </>
 }
 export default World
