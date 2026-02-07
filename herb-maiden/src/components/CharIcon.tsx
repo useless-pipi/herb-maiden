@@ -78,7 +78,7 @@ const CharacterIcon: React.FC<CharacterIconProps> = ({
   },
   textConfig = {
     text: name,
-    fontSize: 16,
+    fontSize: 32,
     fontFamily: 'LXGW WenKai Mono TC, Arial, sans-serif',
     fontWeight: 'bold',
     fontStyle: 'normal',
@@ -101,7 +101,7 @@ const CharacterIcon: React.FC<CharacterIconProps> = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [image] = useImage(getPublicImagePath(imageSrc || ''), 'anonymous', 'origin');
-
+  console.log('imageSrc', imageSrc) 
   // Calculate positions and sizes
   const imageSize = size - (imageConfig.padding || 10) * 2;
   const imageX = imageConfig.padding || 10;
@@ -169,7 +169,7 @@ const CharacterIcon: React.FC<CharacterIconProps> = ({
         stroke="#2196F3"
         strokeWidth={2}
         dash={[10, 5]}
-        cornerRadius={15}
+        cornerRadius={64}
       />
     );
   };
@@ -215,6 +215,8 @@ const CharacterIcon: React.FC<CharacterIconProps> = ({
       )}
       
       {/* Character name */}
+      { textConfig.text &&
+       
       <Text
         text={textConfig.text}
         x={textX}
@@ -235,6 +237,8 @@ const CharacterIcon: React.FC<CharacterIconProps> = ({
         // shadowColor={isHovered ? 'rgba(0,0,0,0.5)' : undefined}
         // shadowBlur={isHovered ? 2 : 0}
       />
+      }
+      
       
       {/* Custom children content */}
       {children}

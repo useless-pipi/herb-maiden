@@ -1,4 +1,44 @@
-export const CHARS = [
+export type CharacterBase = {
+  id: string,
+  born_region_id: number,
+  name: string,
+  name_lang2: string,
+  rarity: number,
+  wisdom: number,
+  leadership: number,
+  speech: number,
+  hp: number,
+  reputation: number,
+}
+export type CHARS_BASE = {
+  id: string,
+  born_region_id: string,
+  name: string,
+  name_lang2: string,
+  rarity: string,
+  wisdom: string,
+  leadership: string,
+  speech: string,
+  hp: string,
+  reputation: string,
+}
+
+function convertCharBaseToCharacterBase(char: CHARS_BASE): CharacterBase {
+  return {
+    id: char.id,
+    born_region_id: parseInt(char.born_region_id, 10),
+    name: char.name,
+    name_lang2: char.name_lang2,
+    rarity: parseInt(char.rarity, 10),
+    wisdom: parseInt(char.wisdom, 10),
+    leadership: parseInt(char.leadership, 10),
+    speech: parseInt(char.speech, 10),
+    hp: parseInt(char.hp, 10),
+    reputation: parseInt(char.reputation.trim(), 10)
+  };
+}
+
+const CHARS: CHARS_BASE[] = [
   {
     "id": "000",
     "born_region_id": "001",
@@ -9,7 +49,7 @@ export const CHARS = [
     "leadership": "5",
     "speech": "8",
     "hp": "6",
-    "reputation ": "7 "
+    "reputation": "7 "
   },
   {
     "id": "001",
@@ -21,7 +61,7 @@ export const CHARS = [
     "leadership": "7",
     "speech": "7",
     "hp": "8",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "002",
@@ -33,7 +73,7 @@ export const CHARS = [
     "leadership": "3",
     "speech": "3",
     "hp": "5",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "003",
@@ -45,7 +85,7 @@ export const CHARS = [
     "leadership": "6",
     "speech": "7",
     "hp": "7",
-    "reputation ": "3 "
+    "reputation": "3 "
   },
   {
     "id": "004",
@@ -57,7 +97,7 @@ export const CHARS = [
     "leadership": "6",
     "speech": "5",
     "hp": "5",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "005",
@@ -69,7 +109,7 @@ export const CHARS = [
     "leadership": "2",
     "speech": "6",
     "hp": "4",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "006",
@@ -81,7 +121,7 @@ export const CHARS = [
     "leadership": "4",
     "speech": "6",
     "hp": "4",
-    "reputation ": "1 "
+    "reputation": "1 "
   },
   {
     "id": "007",
@@ -93,7 +133,7 @@ export const CHARS = [
     "leadership": "7",
     "speech": "7",
     "hp": "4",
-    "reputation ": "3 "
+    "reputation": "3 "
   },
   {
     "id": "008",
@@ -105,7 +145,7 @@ export const CHARS = [
     "leadership": "7",
     "speech": "3",
     "hp": "4",
-    "reputation ": "3 "
+    "reputation": "3 "
   },
   {
     "id": "009",
@@ -117,7 +157,7 @@ export const CHARS = [
     "leadership": "6",
     "speech": "8",
     "hp": "6",
-    "reputation ": "3 "
+    "reputation": "3 "
   },
   {
     "id": "010",
@@ -129,7 +169,7 @@ export const CHARS = [
     "leadership": "4",
     "speech": "4",
     "hp": "6",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "011",
@@ -141,7 +181,7 @@ export const CHARS = [
     "leadership": "5",
     "speech": "3",
     "hp": "5",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "012",
@@ -153,7 +193,7 @@ export const CHARS = [
     "leadership": "7",
     "speech": "7",
     "hp": "7",
-    "reputation ": "3 "
+    "reputation": "3 "
   },
   {
     "id": "013",
@@ -165,7 +205,7 @@ export const CHARS = [
     "leadership": "3",
     "speech": "3",
     "hp": "5",
-    "reputation ": "-3 "
+    "reputation": "-3 "
   },
   {
     "id": "014",
@@ -177,7 +217,7 @@ export const CHARS = [
     "leadership": "4",
     "speech": "7",
     "hp": "4",
-    "reputation ": "3 "
+    "reputation": "3 "
   },
   {
     "id": "015",
@@ -189,7 +229,7 @@ export const CHARS = [
     "leadership": "8",
     "speech": "8",
     "hp": "8",
-    "reputation ": "5 "
+    "reputation": "5 "
   },
   {
     "id": "016",
@@ -201,7 +241,7 @@ export const CHARS = [
     "leadership": "8",
     "speech": "7",
     "hp": "7",
-    "reputation ": "1 "
+    "reputation": "1 "
   },
   {
     "id": "017",
@@ -213,7 +253,7 @@ export const CHARS = [
     "leadership": "8",
     "speech": "4",
     "hp": "5",
-    "reputation ": "3 "
+    "reputation": "3 "
   },
   {
     "id": "018",
@@ -225,7 +265,7 @@ export const CHARS = [
     "leadership": "4",
     "speech": "3",
     "hp": "7",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "019",
@@ -237,7 +277,7 @@ export const CHARS = [
     "leadership": "4",
     "speech": "6",
     "hp": "7",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "020",
@@ -249,7 +289,7 @@ export const CHARS = [
     "leadership": "5",
     "speech": "4",
     "hp": "7",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "021",
@@ -261,7 +301,7 @@ export const CHARS = [
     "leadership": "3",
     "speech": "1",
     "hp": "4",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "022",
@@ -273,7 +313,7 @@ export const CHARS = [
     "leadership": "8",
     "speech": "1",
     "hp": "3",
-    "reputation ": "3 "
+    "reputation": "3 "
   },
   {
     "id": "023",
@@ -285,7 +325,7 @@ export const CHARS = [
     "leadership": "6",
     "speech": "6",
     "hp": "6",
-    "reputation ": "1 "
+    "reputation": "1 "
   },
   {
     "id": "024",
@@ -297,7 +337,7 @@ export const CHARS = [
     "leadership": "6",
     "speech": "6",
     "hp": "7",
-    "reputation ": "1 "
+    "reputation": "1 "
   },
   {
     "id": "025",
@@ -309,7 +349,7 @@ export const CHARS = [
     "leadership": "7",
     "speech": "4",
     "hp": "5",
-    "reputation ": "1 "
+    "reputation": "1 "
   },
   {
     "id": "026",
@@ -321,7 +361,7 @@ export const CHARS = [
     "leadership": "6",
     "speech": "5",
     "hp": "6",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "027",
@@ -333,7 +373,7 @@ export const CHARS = [
     "leadership": "6",
     "speech": "7",
     "hp": "5",
-    "reputation ": "3 "
+    "reputation": "3 "
   },
   {
     "id": "028",
@@ -345,7 +385,7 @@ export const CHARS = [
     "leadership": "3",
     "speech": "3",
     "hp": "7",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "029",
@@ -357,7 +397,7 @@ export const CHARS = [
     "leadership": "2",
     "speech": "5",
     "hp": "6",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "030",
@@ -369,7 +409,7 @@ export const CHARS = [
     "leadership": "5",
     "speech": "3",
     "hp": "6",
-    "reputation ": "-1 "
+    "reputation": "-1 "
   },
   {
     "id": "031",
@@ -381,7 +421,7 @@ export const CHARS = [
     "leadership": "4",
     "speech": "4",
     "hp": "5",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "032",
@@ -393,7 +433,7 @@ export const CHARS = [
     "leadership": "6",
     "speech": "5",
     "hp": "8",
-    "reputation ": "1 "
+    "reputation": "1 "
   },
   {
     "id": "033",
@@ -405,7 +445,7 @@ export const CHARS = [
     "leadership": "5",
     "speech": "2",
     "hp": "6",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "034",
@@ -417,7 +457,7 @@ export const CHARS = [
     "leadership": "8",
     "speech": "5",
     "hp": "5",
-    "reputation ": "-1 "
+    "reputation": "-1 "
   },
   {
     "id": "035",
@@ -429,7 +469,7 @@ export const CHARS = [
     "leadership": "4",
     "speech": "7",
     "hp": "6",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "036",
@@ -441,7 +481,7 @@ export const CHARS = [
     "leadership": "6",
     "speech": "6",
     "hp": "5",
-    "reputation ": "1 "
+    "reputation": "1 "
   },
   {
     "id": "037",
@@ -453,7 +493,7 @@ export const CHARS = [
     "leadership": "4",
     "speech": "6",
     "hp": "7",
-    "reputation ": "1 "
+    "reputation": "1 "
   },
   {
     "id": "038",
@@ -465,7 +505,7 @@ export const CHARS = [
     "leadership": "3",
     "speech": "7",
     "hp": "5",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "039",
@@ -477,7 +517,7 @@ export const CHARS = [
     "leadership": "2",
     "speech": "7",
     "hp": "4",
-    "reputation ": "1 "
+    "reputation": "1 "
   },
   {
     "id": "040",
@@ -489,7 +529,7 @@ export const CHARS = [
     "leadership": "6",
     "speech": "5",
     "hp": "8",
-    "reputation ": "1 "
+    "reputation": "1 "
   },
   {
     "id": "041",
@@ -501,7 +541,7 @@ export const CHARS = [
     "leadership": "3",
     "speech": "8",
     "hp": "2",
-    "reputation ": "3 "
+    "reputation": "3 "
   },
   {
     "id": "042",
@@ -513,7 +553,7 @@ export const CHARS = [
     "leadership": "6",
     "speech": "6",
     "hp": "4",
-    "reputation ": "1 "
+    "reputation": "1 "
   },
   {
     "id": "043",
@@ -525,7 +565,7 @@ export const CHARS = [
     "leadership": "7",
     "speech": "5",
     "hp": "6",
-    "reputation ": "3 "
+    "reputation": "3 "
   },
   {
     "id": "044",
@@ -537,7 +577,7 @@ export const CHARS = [
     "leadership": "4",
     "speech": "6",
     "hp": "7",
-    "reputation ": "1 "
+    "reputation": "1 "
   },
   {
     "id": "045",
@@ -549,7 +589,7 @@ export const CHARS = [
     "leadership": "5",
     "speech": "7",
     "hp": "5",
-    "reputation ": "1 "
+    "reputation": "1 "
   },
   {
     "id": "046",
@@ -561,7 +601,7 @@ export const CHARS = [
     "leadership": "6",
     "speech": "6",
     "hp": "7",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "047",
@@ -573,7 +613,7 @@ export const CHARS = [
     "leadership": "2",
     "speech": "9",
     "hp": "6",
-    "reputation ": "3 "
+    "reputation": "3 "
   },
   {
     "id": "048",
@@ -585,7 +625,7 @@ export const CHARS = [
     "leadership": "5",
     "speech": "7",
     "hp": "4",
-    "reputation ": "3 "
+    "reputation": "3 "
   },
   {
     "id": "049",
@@ -597,7 +637,7 @@ export const CHARS = [
     "leadership": "7",
     "speech": "5",
     "hp": "5",
-    "reputation ": "3 "
+    "reputation": "3 "
   },
   {
     "id": "050",
@@ -609,7 +649,7 @@ export const CHARS = [
     "leadership": "5",
     "speech": "8",
     "hp": "7",
-    "reputation ": "3 "
+    "reputation": "3 "
   },
   {
     "id": "051",
@@ -621,7 +661,7 @@ export const CHARS = [
     "leadership": "9",
     "speech": "6",
     "hp": "8",
-    "reputation ": "5 "
+    "reputation": "5 "
   },
   {
     "id": "052",
@@ -633,7 +673,7 @@ export const CHARS = [
     "leadership": "5",
     "speech": "8",
     "hp": "8",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "053",
@@ -645,7 +685,7 @@ export const CHARS = [
     "leadership": "5",
     "speech": "5",
     "hp": "5",
-    "reputation ": "1 "
+    "reputation": "1 "
   },
   {
     "id": "054",
@@ -657,7 +697,7 @@ export const CHARS = [
     "leadership": "3",
     "speech": "7",
     "hp": "6",
-    "reputation ": "5 "
+    "reputation": "5 "
   },
   {
     "id": "055",
@@ -669,7 +709,7 @@ export const CHARS = [
     "leadership": "8",
     "speech": "8",
     "hp": "7",
-    "reputation ": "1 "
+    "reputation": "1 "
   },
   {
     "id": "056",
@@ -681,7 +721,7 @@ export const CHARS = [
     "leadership": "6",
     "speech": "4",
     "hp": "7",
-    "reputation ": "0 "
+    "reputation": "0 "
   },
   {
     "id": "057",
@@ -693,7 +733,7 @@ export const CHARS = [
     "leadership": "6",
     "speech": "7",
     "hp": "5",
-    "reputation ": "1 "
+    "reputation": "1 "
   },
   {
     "id": "058",
@@ -705,7 +745,7 @@ export const CHARS = [
     "leadership": "6",
     "speech": "8",
     "hp": "4",
-    "reputation ": "3 "
+    "reputation": "3 "
   },
   {
     "id": "059",
@@ -717,7 +757,7 @@ export const CHARS = [
     "leadership": "1",
     "speech": "9",
     "hp": "3",
-    "reputation ": "3 "
+    "reputation": "3 "
   },
   {
     "id": "060",
@@ -729,7 +769,7 @@ export const CHARS = [
     "leadership": "3",
     "speech": "6",
     "hp": "4",
-    "reputation ": "3 "
+    "reputation": "3 "
   },
   {
     "id": "999",
@@ -741,6 +781,8 @@ export const CHARS = [
     "leadership": "3",
     "speech": "3",
     "hp": "4",
-    "reputation ": "0"
+    "reputation": "0"
   }
 ]
+
+export const rawChars: CharacterBase[] = CHARS.map(convertCharBaseToCharacterBase);

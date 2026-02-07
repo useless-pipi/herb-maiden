@@ -9,6 +9,7 @@ export interface RStageProps {
   scaleMargin?: number;
   containerProps?: React.HTMLAttributes<HTMLDivElement>;
   stageProps?: Omit<StageProps, 'width' | 'height' | 'scaleX' | 'scaleY' | 'children'>;
+  isDragVBound?: boolean | undefined;
 }
 
 const RStage: React.FC<RStageProps> = ({
@@ -18,6 +19,7 @@ const RStage: React.FC<RStageProps> = ({
   scaleMargin = 0.02,
   containerProps = {},
   stageProps = {},
+  isDragVBound = false,
 }) => {
   const [stageSize, setStageSize] = useState({
     width: sceneWidth,
@@ -25,12 +27,32 @@ const RStage: React.FC<RStageProps> = ({
     scale: 1,
   });
 
+  // Initial stage position
+  const [stagePosition, setStagePosition] = useState({ x: 0, y: 0 });
+
+  // Function to constrain dragging to the vertical axis only
+  const handleDragBound = (pos: any) => {
+    // Return an object with the original x position and the new y position
+    return {
+      x: stagePosition.x, // Keep the original X position
+      y: pos.y,           // Allow the new Y position
+    };
+  };
+
+  const handleDragEnd = (e: any) => {
+    // Update the state with the final position after dragging ends
+    setStagePosition({
+      x: e.target.x(),
+      y: e.target.y(),
+    });
+  };
+
   const handleResize = useCallback((size: { width: number; height: number }) => {
     const scaleX = size.width / sceneWidth;
     const scaleY = size.height / sceneHeight;
 
     const scale = Math.min(scaleX, scaleY) * (1 - scaleMargin);
-    console.log('scale', scale)
+    console.log(`scale X:${scaleX} Y:${scaleY}`, scale)
     setStageSize({
       width: size.width,
       height: size.height,
@@ -45,7 +67,7 @@ const RStage: React.FC<RStageProps> = ({
   return (
     <div 
       ref={containerRef}
-      className='w-full h-full'
+      className='w-screen h-screen'
       {...containerProps}
     >
       <Stage 
@@ -54,6 +76,8 @@ const RStage: React.FC<RStageProps> = ({
         scaleX={stageSize.scale}
         scaleY={stageSize.scale}
         {...stageProps}
+        dragBoundFunc={isDragVBound ? handleDragBound : undefined}
+        onDragEnd={handleDragEnd}
       >
         {children}
       </Stage>

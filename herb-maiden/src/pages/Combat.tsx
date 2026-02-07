@@ -53,7 +53,7 @@ const Combat = () => {
                 size={ICON_SIZE}
                 imageSrc={'chars/000i.png'}
                 textConfig = {{
-                    text: '中文字測試',
+                    text: "中文字測試",
                     fontSize: 48,
                     fontFamily: 'LXGW WenKai Mono TC Bold, Arial, sans-serif',
                     fontWeight: 'bold',
@@ -66,7 +66,7 @@ const Combat = () => {
                     // stroke: 'black',
                     // strokeWidth: 1,
                 }}
-                name="000i"
+                name="中文字測試"
                 draggable={true}
                 onClick={() => { setTestHP(testHP => testHP - 10);}}
             />
