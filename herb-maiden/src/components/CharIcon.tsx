@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { Group, Rect, Image, Text, Circle } from 'react-konva';
+import React, { useState } from 'react';
+import { Group, Rect, Image, Text } from 'react-konva';
 import useImage from 'use-image';
 import { getPublicImagePath } from '../common/Util';
 import Konva from 'konva';

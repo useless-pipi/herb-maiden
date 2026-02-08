@@ -1,43 +1,18 @@
-import { useState, useCallback } from 'react'
 import './../App.css'
-import { Image, Stage, Layer } from 'react-konva';
+import { Image, Layer } from 'react-konva';
 import useImage from 'use-image';
 import { MAP_WORLD_DIMENSION } from '../common/constants'
-import { useResizeObserver } from '../hooks/useResizeObserver';
-import { CITIES } from '../data/cities'
 import { getPublicImagePath } from '../common/Util';
 import RStage from '../components/RStage';
 import { useCityStore } from '../store/cityStore';
 import KonvaImageWithLoader from '../components/KonvaImageWithLoader';
 
 function World(){
-    const [image000] = useImage(getPublicImagePath('chars/000i.png'), 'anonymous', 'origin');
     const [worldImage] = useImage(getPublicImagePath('maps/World.jpg'), 'anonymous', 'origin');
-
-    const handleResize = useCallback((size: { width: number; height: number }) => {
-      console.log('div change:', size);
-      const newScale = size.width / sceneWidth
-      setStageSize({
-        width: size.width,
-        height: size.height,
-        scale: newScale - 0.02,
-      })
-    }, []);
-
-    const { ref: containerRef } = useResizeObserver<HTMLDivElement>(
-      { onResize: handleResize }
-    );
 
     // Define virtual size for our scene
     const sceneWidth = MAP_WORLD_DIMENSION.x;
     const sceneHeight = MAP_WORLD_DIMENSION.y;
-    
-    // State to track current scale and dimensions
-    const [stageSize, setStageSize] = useState({
-      width: sceneWidth,
-      height: sceneHeight,
-      scale: 1
-    });
 
     const cities = useCityStore(state => state.cities);
 
@@ -51,8 +26,9 @@ function World(){
             // className: 'world-container',
           }}
           stageProps={{
-            // draggable: true,
+            draggable: true,
           }}
+          isWheelZoom
         >
           <Layer>
             <Image

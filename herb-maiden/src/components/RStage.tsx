@@ -1,4 +1,4 @@
-import React, { useState, useCallback, type ReactNode } from 'react';
+import React, { useState, useCallback, type ReactNode, useRef } from 'react';
 import { Stage, type StageProps } from 'react-konva';
 import { useResizeObserver } from '../hooks/useResizeObserver';
 import './component.css'
@@ -12,6 +12,7 @@ export interface RStageProps {
   stageProps?: Omit<StageProps, 'width' | 'height' | 'scaleX' | 'scaleY' | 'children'>;
   isDragVBound?: boolean | undefined;
   isStageHCenter?: boolean | undefined;
+  isWheelZoom?: boolean | undefined;
 }
 
 const RStage: React.FC<RStageProps> = ({
@@ -23,6 +24,7 @@ const RStage: React.FC<RStageProps> = ({
   stageProps = {},
   isDragVBound = false,
   isStageHCenter = true,
+  isWheelZoom = false,
 }) => {
   const [stageSize, setStageSize] = useState({
     width: sceneWidth,
@@ -48,6 +50,31 @@ const RStage: React.FC<RStageProps> = ({
       x: e.target.x(),
       y: e.target.y(),
     });
+  };
+
+  const handleWheel = (e:any) => {
+    e.evt.preventDefault();
+
+    const scaleBy = 1.1;
+    const stage = e.target.getStage();
+    const oldScale = stage.scaleX();
+    const mousePointTo = {
+      x: stage.getPointerPosition().x / oldScale - stage.x() / oldScale,
+      y: stage.getPointerPosition().y / oldScale - stage.y() / oldScale
+    };
+
+    const newScale = e.evt.deltaY < 0 ? oldScale * scaleBy : oldScale / scaleBy;
+
+    setStageSize((size) => ({
+      ...size,
+      scale: newScale,
+    }));
+
+    setStagePosition((pos) => ({
+      ...pos,
+      x: (stage.getPointerPosition().x / newScale - mousePointTo.x) * newScale,
+      y: (stage.getPointerPosition().y / newScale - mousePointTo.y) * newScale
+    }));
   };
 
   const handleResize = useCallback((size: { width: number; height: number }) => {
@@ -79,7 +106,7 @@ const RStage: React.FC<RStageProps> = ({
       className='w-full h-full'
       {...containerProps}
     >
-      <Stage 
+      <Stage
         x={stagePosition.x}
         y={stagePosition.y}
         width={stageSize.width}
@@ -89,6 +116,7 @@ const RStage: React.FC<RStageProps> = ({
         {...stageProps}
         dragBoundFunc={isDragVBound ? handleDragBound : undefined}
         onDragEnd={handleDragEnd}
+        onWheel={isWheelZoom ? handleWheel : undefined}
       >
         {children}
       </Stage>
