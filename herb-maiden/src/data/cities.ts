@@ -1,4 +1,44 @@
-export const CITIES =
+export type CityBase = {
+  id: string,
+  region_id: string,
+  name: string,
+  chi_name: string,
+  defense: number,
+  major: boolean,
+  x: number,
+  y: number,
+  path: string,
+  water: string,
+}
+export type CITY_BASE = {
+  id: string,
+  region_id: string,
+  name: string,
+  chi_name: string,
+  defense: string,
+  major: string,
+  x: string,
+  y: string,
+  path: string,
+  water: string,
+}
+
+function convertCityFromRaw(city: CITY_BASE): CityBase {
+  return {
+    id: city.id,
+    region_id: city.region_id,
+    name: city.name,
+    chi_name: city.chi_name,
+    defense: parseInt(city.defense, 10),
+    major: city.major === 'Y',
+    x: parseInt(city.x, 10),
+    y: parseInt(city.y, 10),
+    path: city.path,
+    water: city.water,
+  };
+}
+
+export const CITIES: CITY_BASE[] =
 [
   {
     "id": "001",
@@ -10,7 +50,7 @@ export const CITIES =
     "x": "305",
     "y": "1030",
     "path": "002",
-    "water ": "O "
+    "water": "O"
   },
   {
     "id": "002",
@@ -22,7 +62,7 @@ export const CITIES =
     "x": "685",
     "y": "934",
     "path": "003,019",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "003",
@@ -34,7 +74,7 @@ export const CITIES =
     "x": "1312",
     "y": "670",
     "path": "002,004",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "004",
@@ -46,7 +86,7 @@ export const CITIES =
     "x": "1805",
     "y": "559",
     "path": "006,008",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "005",
@@ -58,7 +98,7 @@ export const CITIES =
     "x": "3344",
     "y": "430",
     "path": "004,008",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "006",
@@ -70,7 +110,7 @@ export const CITIES =
     "x": "2515",
     "y": "555",
     "path": "004,005,008",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "007",
@@ -82,7 +122,7 @@ export const CITIES =
     "x": "3228",
     "y": "1170",
     "path": "006,009",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "008",
@@ -94,7 +134,7 @@ export const CITIES =
     "x": "2563",
     "y": "1074",
     "path": "004,006,007",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "009",
@@ -106,7 +146,7 @@ export const CITIES =
     "x": "3875",
     "y": "718",
     "path": "007,010,013,014",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "010",
@@ -118,7 +158,7 @@ export const CITIES =
     "x": "3569",
     "y": "478",
     "path": "005,009",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "011",
@@ -130,7 +170,7 @@ export const CITIES =
     "x": "4578",
     "y": "334",
     "path": "014",
-    "water ": "O "
+    "water": "O"
   },
   {
     "id": "012",
@@ -142,7 +182,7 @@ export const CITIES =
     "x": "3344",
     "y": "1415",
     "path": "013,017",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "013",
@@ -154,7 +194,7 @@ export const CITIES =
     "x": "3708",
     "y": "1050",
     "path": "009,012",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "014",
@@ -166,7 +206,7 @@ export const CITIES =
     "x": "4384",
     "y": "886",
     "path": "009,011,015",
-    "water ": "O "
+    "water": "O"
   },
   {
     "id": "015",
@@ -178,7 +218,7 @@ export const CITIES =
     "x": "4293",
     "y": "1187",
     "path": "014,016",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "016",
@@ -190,7 +230,7 @@ export const CITIES =
     "x": "4357",
     "y": "1723",
     "path": "015,017",
-    "water ": "O "
+    "water": "O"
   },
   {
     "id": "017",
@@ -202,7 +242,7 @@ export const CITIES =
     "x": "3727",
     "y": "1754",
     "path": "012,016,049",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "018",
@@ -214,7 +254,7 @@ export const CITIES =
     "x": "446",
     "y": "1905",
     "path": "019,020",
-    "water ": "O "
+    "water": "O"
   },
   {
     "id": "019",
@@ -226,7 +266,7 @@ export const CITIES =
     "x": "976",
     "y": "1463",
     "path": "002,015",
-    "water ": "O "
+    "water": "O"
   },
   {
     "id": "020",
@@ -238,7 +278,7 @@ export const CITIES =
     "x": "1154",
     "y": "1867",
     "path": "018,021,033",
-    "water ": "I "
+    "water": "I"
   },
   {
     "id": "021",
@@ -250,7 +290,7 @@ export const CITIES =
     "x": "1360",
     "y": "1723",
     "path": "020,024",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "022",
@@ -262,7 +302,7 @@ export const CITIES =
     "x": "1456",
     "y": "1002",
     "path": "023,024",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "023",
@@ -274,7 +314,7 @@ export const CITIES =
     "x": "1962",
     "y": "1283",
     "path": "022,025,026",
-    "water ": "I "
+    "water": "I"
   },
   {
     "id": "024",
@@ -286,7 +326,7 @@ export const CITIES =
     "x": "1682",
     "y": "1610",
     "path": "021,022,025",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "025",
@@ -298,7 +338,7 @@ export const CITIES =
     "x": "2010",
     "y": "1771",
     "path": "023,024,030,031",
-    "water ": "I "
+    "water": "I"
   },
   {
     "id": "026",
@@ -310,7 +350,7 @@ export const CITIES =
     "x": "2384",
     "y": "1319",
     "path": "023,027",
-    "water ": "I "
+    "water": "I"
   },
   {
     "id": "027",
@@ -322,7 +362,7 @@ export const CITIES =
     "x": "2684",
     "y": "1486",
     "path": "026,029",
-    "water ": "I "
+    "water": "I"
   },
   {
     "id": "028",
@@ -334,7 +374,7 @@ export const CITIES =
     "x": "3276",
     "y": "2048",
     "path": "029,046",
-    "water ": "I "
+    "water": "I"
   },
   {
     "id": "029",
@@ -346,7 +386,7 @@ export const CITIES =
     "x": "3017",
     "y": "1658",
     "path": "027,028",
-    "water ": "I "
+    "water": "I"
   },
   {
     "id": "030",
@@ -358,7 +398,7 @@ export const CITIES =
     "x": "1807",
     "y": "1875",
     "path": "025,038",
-    "water ": "I "
+    "water": "I"
   },
   {
     "id": "031",
@@ -370,7 +410,7 @@ export const CITIES =
     "x": "2336",
     "y": "1658",
     "path": "025",
-    "water ": "I "
+    "water": "I"
   },
   {
     "id": "032",
@@ -382,7 +422,7 @@ export const CITIES =
     "x": "179",
     "y": "2884",
     "path": "033,034",
-    "water ": "O "
+    "water": "O"
   },
   {
     "id": "033",
@@ -394,7 +434,7 @@ export const CITIES =
     "x": "949",
     "y": "2214",
     "path": "020,032,036",
-    "water ": "O "
+    "water": "O"
   },
   {
     "id": "034",
@@ -406,7 +446,7 @@ export const CITIES =
     "x": "516",
     "y": "3194",
     "path": "032,035",
-    "water ": "O "
+    "water": "O"
   },
   {
     "id": "035",
@@ -418,7 +458,7 @@ export const CITIES =
     "x": "949",
     "y": "2713",
     "path": "034,036",
-    "water ": "O "
+    "water": "O"
   },
   {
     "id": "036",
@@ -430,7 +470,7 @@ export const CITIES =
     "x": "1176",
     "y": "2404",
     "path": "033,035,037",
-    "water ": "B "
+    "water": "B "
   },
   {
     "id": "037",
@@ -442,7 +482,7 @@ export const CITIES =
     "x": "1563",
     "y": "2737",
     "path": "036,042",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "038",
@@ -454,7 +494,7 @@ export const CITIES =
     "x": "1759",
     "y": "2144",
     "path": "030,039",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "039",
@@ -466,7 +506,7 @@ export const CITIES =
     "x": "1967",
     "y": "2214",
     "path": "038,040",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "040",
@@ -478,7 +518,7 @@ export const CITIES =
     "x": "2807",
     "y": "1971",
     "path": "039,041",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "041",
@@ -490,7 +530,7 @@ export const CITIES =
     "x": "2588",
     "y": "2283",
     "path": "040,044",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "042",
@@ -502,7 +542,7 @@ export const CITIES =
     "x": "1709",
     "y": "3096",
     "path": "037,043",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "043",
@@ -514,7 +554,7 @@ export const CITIES =
     "x": "1962",
     "y": "2713",
     "path": "042,044",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "044",
@@ -526,7 +566,7 @@ export const CITIES =
     "x": "2223",
     "y": "2521",
     "path": "041,043,045",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "045",
@@ -538,7 +578,7 @@ export const CITIES =
     "x": "2432",
     "y": "2617",
     "path": "044,047",
-    "water ": "I "
+    "water": "I"
   },
   {
     "id": "046",
@@ -550,7 +590,7 @@ export const CITIES =
     "x": "2903",
     "y": "2569",
     "path": "028,047,048",
-    "water ": "I "
+    "water": "I"
   },
   {
     "id": "047",
@@ -562,7 +602,7 @@ export const CITIES =
     "x": "2753",
     "y": "2884",
     "path": "045,046",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "048",
@@ -574,7 +614,7 @@ export const CITIES =
     "x": "3617",
     "y": "2331",
     "path": "046,049",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "049",
@@ -586,7 +626,7 @@ export const CITIES =
     "x": "4001",
     "y": "3002",
     "path": "048,051",
-    "water ": " "
+    "water": " "
   },
   {
     "id": "050",
@@ -598,7 +638,7 @@ export const CITIES =
     "x": "4145",
     "y": "2396",
     "path": "017,051",
-    "water ": "O "
+    "water": "O"
   },
   {
     "id": "051",
@@ -610,6 +650,25 @@ export const CITIES =
     "x": "4341",
     "y": "2932",
     "path": "049,050",
-    "water ": null
+    "water": " "
   }
 ]
+
+export const rawCities: CityBase[] = CITIES.map(convertCityFromRaw);
+
+export const getCityImgSrc = (city: CityBase) => {
+  switch(city.defense) {
+    case 1:
+      return 'icons/village.svg'
+    case 2:
+      return 'icons/defensive-wall.svg'
+    case 3:
+      return 'icons/white-tower.svg'
+    case 4:
+      return 'icons/stone-tower.svg'
+    case 5:
+      return 'icons/castle.svg'
+    default:
+      return 'icons/village.svg'
+  }
+}

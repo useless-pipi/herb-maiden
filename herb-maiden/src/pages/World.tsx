@@ -7,6 +7,8 @@ import { useResizeObserver } from '../hooks/useResizeObserver';
 import { CITIES } from '../data/cities'
 import { getPublicImagePath } from '../common/Util';
 import RStage from '../components/RStage';
+import { useCityStore } from '../store/cityStore';
+import KonvaImageWithLoader from '../components/KonvaImageWithLoader';
 
 function World(){
     const [image000] = useImage(getPublicImagePath('chars/000i.png'), 'anonymous', 'origin');
@@ -37,6 +39,8 @@ function World(){
       scale: 1
     });
 
+    const cities = useCityStore(state => state.cities);
+
     return <>
         <RStage
           sceneWidth={sceneWidth}
@@ -65,18 +69,17 @@ function World(){
           </Layer>
           <Layer>
           {
-            CITIES.map((city) => (
-              <Image
+            cities.map((city) => (
+              <KonvaImageWithLoader
                 key={city.name}
-                image={image000}
-                x={ parseInt(city.x) }
-                y={ parseInt(city.y) }
+                src={city.imgSrc}
+                x={ (city.x) }
+                y={ (city.y) }
                 width={160}
                 height={160}
                 stroke="black"
                 strokeWidth={24}
                 cornerRadius={24}
-                draggable              
               />
             ))
           }

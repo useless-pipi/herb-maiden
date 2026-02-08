@@ -80,8 +80,8 @@ const RStage: React.FC<RStageProps> = ({
       {...containerProps}
     >
       <Stage 
-        // x={stagePosition.x}
-        // y={stagePosition.y}
+        x={stagePosition.x}
+        y={stagePosition.y}
         width={stageSize.width}
         height={stageSize.height}
         scaleX={stageSize.scale}

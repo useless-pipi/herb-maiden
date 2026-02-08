@@ -1,6 +1,6 @@
 export type CharacterBase = {
   id: string,
-  born_region_id: number,
+  born_region_id: string,
   name: string,
   name_lang2: string,
   rarity: number,
@@ -26,7 +26,7 @@ export type CHARS_BASE = {
 function convertCharBaseToCharacterBase(char: CHARS_BASE): CharacterBase {
   return {
     id: char.id,
-    born_region_id: parseInt(char.born_region_id, 10),
+    born_region_id: char.born_region_id,
     name: char.name,
     name_lang2: char.name_lang2,
     rarity: parseInt(char.rarity, 10),

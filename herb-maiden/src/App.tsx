@@ -46,7 +46,7 @@ function App() {
 
         {/* Main Content */}
         <div className="flex-1 bg-gradient-to-br from-gray-50 to-gray-100 p-2 overflow-auto">
-          <Combat></Combat>
+          <World></World>
         </div>
 
         {/* Right Sidebar - fixed min-width of 9rem */}

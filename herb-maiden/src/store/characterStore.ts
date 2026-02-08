@@ -1,8 +1,9 @@
 import { create } from 'zustand';
 import { rawChars, type CharacterBase } from '../data/chars';
+import { getRandomIntegerInclusive } from '../common/Util';
 
 // Simple character type with only 3 fields
-interface Character extends CharacterBase {
+export interface Character extends CharacterBase {
   imgSrc: string;
 }
 
@@ -23,6 +24,20 @@ interface CharacterStore {
   getSelected: () => Character | undefined;
   getAlive: () => Character[];
   getLowhp: () => Character[]; // hp < 50
+}
+
+export const fallBackCharacter: Character = {
+  id: 'dummy',
+  born_region_id: "001",
+  name: 'Officer',
+  name_lang2: '士官',
+  rarity: 1,
+  wisdom: 3,
+  leadership: 3,
+  speech: 3,
+  hp: 5,
+  reputation: 0,
+  imgSrc: `chars/90${getRandomIntegerInclusive(1,6)}.png`,
 }
 
 export const useCharacterStore = create<CharacterStore>((set, get) => ({
