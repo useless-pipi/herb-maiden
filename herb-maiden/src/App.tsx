@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css'
 import { CharacterList } from './pages/CharList';
 import Combat from './pages/Combat';
@@ -6,6 +7,13 @@ import Combat from './pages/Combat';
 import World from './pages/World';
 
 function App() {
+  const [page, setPage] = useState('World');
+  const pages: Record<string, React.ReactNode> = {
+    World: <World />,
+    Combat: <Combat />,
+    CharacterList: <CharacterList />,
+  };
+
   return (
     <div className="w-screen h-screen bg-gray-50 flex flex-col">
       
@@ -13,14 +21,14 @@ function App() {
       <div className="min-h-[4rem] bg-gradient-to-r from-blue-500 to-blue-600 border-b border-blue-700 flex items-center justify-between px-8">
         <h1 className="text-2xl font-bold text-white">Application Name</h1>
         <nav className="flex items-center space-x-6">
-          <button className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-white backdrop-blur-sm transition">
-            Dashboard
+          <button className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-black backdrop-blur-sm transition" onClick={() => setPage('World')}>
+            World
           </button>
-          <button className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-white backdrop-blur-sm transition">
-            Projects
+          <button className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-black backdrop-blur-sm transition" onClick={() => setPage('Combat')}>
+            Combat
           </button>
-          <button className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-white backdrop-blur-sm transition">
-            Settings
+          <button className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-black backdrop-blur-sm transition" onClick={() => setPage('CharacterList')}>
+            Characters
           </button>
         </nav>
       </div>
@@ -46,7 +54,7 @@ function App() {
 
         {/* Main Content */}
         <div className="flex-1 bg-gradient-to-br from-gray-50 to-gray-100 p-2 overflow-auto">
-          <World></World>
+          {pages[page] || <World />}
         </div>
 
         {/* Right Sidebar - fixed min-width of 9rem */}

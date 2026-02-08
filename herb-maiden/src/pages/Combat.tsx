@@ -1,7 +1,7 @@
-import { useState, useCallback } from 'react'
+import { useState } from 'react'
 import './../App.css'
 import useImage from 'use-image';
-import { Stage, Layer, Image, Rect, Text, Group } from 'react-konva';
+import { Layer, Image, Rect, Text, Group } from 'react-konva';
 import { getPublicImagePath } from '../common/Util';
 import RStage from '../components/RStage';
 import RBar from '../components/RBar';
@@ -10,7 +10,6 @@ import CharacterIcon from '../components/CharIcon';
 const Combat = () => {
   // 1. Load all img
   const [backgroundImage] = useImage(getPublicImagePath('bg/river.jpg'), 'anonymous', 'origin');
-  const [playerImage] = useImage(getPublicImagePath('chars/000i.png'), 'anonymous', 'origin');
   const [enemyImage] = useImage(getPublicImagePath('enemy/1001i.png'), 'anonymous', 'origin');
   const [testHP, setTestHP] = useState(55);
 

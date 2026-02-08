@@ -1,4 +1,3 @@
-import React, { useState, useCallback, type ReactNode } from 'react';
 import { Group, Rect, Text } from 'react-konva';
 
 interface RBarProps {

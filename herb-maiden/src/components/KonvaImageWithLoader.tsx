@@ -2,6 +2,7 @@ import React from 'react';
 import { Image } from 'react-konva';
 import useImage from 'use-image';
 import { getPublicImagePath } from '../common/Util';
+import type Konva from 'konva';
 
 interface KonvaImageWithLoaderProps {
   src: string;
@@ -9,6 +10,7 @@ interface KonvaImageWithLoaderProps {
   y?: number;
   width?: number;
   height?: number;
+  onClick?: (e: Konva.KonvaEventObject<MouseEvent>) => void;
   [key: string]: any;
 }
 
@@ -18,6 +20,7 @@ const KonvaImageWithLoader: React.FC<KonvaImageWithLoaderProps> = ({
   y = 0,
   width = 160,
   height = 160,
+  clickEvent,
   ...otherProp
 }) => {
   const [image] = useImage(getPublicImagePath(src), 'anonymous', 'origin');
@@ -34,6 +37,7 @@ const KonvaImageWithLoader: React.FC<KonvaImageWithLoaderProps> = ({
       y={y}
       width={width}
       height={height}
+      onClick={clickEvent}
       {...otherProp}
     />
   );

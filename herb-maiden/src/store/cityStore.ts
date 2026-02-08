@@ -4,6 +4,7 @@ import { getCityImgSrc, rawCities, type CityBase } from '../data/cities';
 // Simple city type with only 3 fields
 export interface City extends CityBase {
   imgSrc: string;
+  isSelected: boolean;
 }
 
 interface CityStore {
@@ -28,6 +29,7 @@ export const useCityStore = create<CityStore>((set, get) => ({
   cities: rawCities.map(rawCity => ({
     ...rawCity,
     imgSrc: getCityImgSrc(rawCity),
+    isSelected: false,
   })
   )
   ,
@@ -68,6 +70,11 @@ export const useCityStore = create<CityStore>((set, get) => ({
   
   selectCity: (id) => {
     set({ selectedId: id });
+    set((state) => ({
+      cities: state.cities.map((city) =>
+        city.id === id ? { ...city, isSelected: true } : {...city, isSelected: false}
+      ),
+    }));
   },
   
   // Getters
