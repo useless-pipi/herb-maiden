@@ -1,6 +1,7 @@
 import React, { useState, useCallback, type ReactNode } from 'react';
 import { Stage, type StageProps } from 'react-konva';
 import { useResizeObserver } from '../hooks/useResizeObserver';
+import './component.css'
 
 export interface RStageProps {
   sceneWidth: number;
@@ -10,6 +11,7 @@ export interface RStageProps {
   containerProps?: React.HTMLAttributes<HTMLDivElement>;
   stageProps?: Omit<StageProps, 'width' | 'height' | 'scaleX' | 'scaleY' | 'children'>;
   isDragVBound?: boolean | undefined;
+  isStageHCenter?: boolean | undefined;
 }
 
 const RStage: React.FC<RStageProps> = ({
@@ -20,6 +22,7 @@ const RStage: React.FC<RStageProps> = ({
   containerProps = {},
   stageProps = {},
   isDragVBound = false,
+  isStageHCenter = true,
 }) => {
   const [stageSize, setStageSize] = useState({
     width: sceneWidth,
@@ -58,6 +61,12 @@ const RStage: React.FC<RStageProps> = ({
       height: size.height,
       scale,
     });
+
+    // if (isStageHCenter) setStagePosition((value) => ({
+    //   ...value,
+    //   x: size.width * (1 - Math.max(scaleX, scaleY)) / 2,
+    // }));
+
   }, [sceneWidth, sceneHeight, scaleMargin]);
 
   const { ref: containerRef } = useResizeObserver<HTMLDivElement>({
@@ -67,10 +76,12 @@ const RStage: React.FC<RStageProps> = ({
   return (
     <div 
       ref={containerRef}
-      className='w-screen h-screen'
+      className='w-full h-full'
       {...containerProps}
     >
       <Stage 
+        // x={stagePosition.x}
+        // y={stagePosition.y}
         width={stageSize.width}
         height={stageSize.height}
         scaleX={stageSize.scale}
